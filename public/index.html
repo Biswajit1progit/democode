@@ -467,13 +467,48 @@
       </div>
 
       <div class="field-label">Session</div>
-      <select id="sessionSelect">
+     <!--  <select id="sessionSelect">
+        <option value="" disabled selected>Select session</option>
+        <option value="Even-(2025-26)">Even (2025-26)</option>
         <option value="Odd-(2025-26)">Odd (2025-26)</option>
         <option value="Even-(2024-25)">Even (2024-25)</option>
         <option value="Odd-(2024-25)">Odd (2024-25)</option>
         <option value="Even-(2023-24)">Even (2023-24)</option>
         <option value="Odd-(2023-24)">Odd (2023-24)</option>
-      </select>
+      </select> -->
+      <select id="sessionSelect"></select>
+
+<script>
+function generateSessions() {
+  const sessions = [];
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1; // 1-12
+
+  // Generate last 3 years of sessions
+  for (let y = year; y >= year - 2; y--) {
+    // Odd session: July-Dec → y to y+1
+    sessions.push(`Odd-(${y}-${String(y + 1).slice(-2)})`);
+    // Even session: Jan-June → y-1 to y
+    sessions.push(`Even-(${y - 1}-${String(y).slice(-2)})`);
+  }
+
+  const select = document.getElementById('sessionSelect');
+  select.innerHTML = sessions.map(s =>
+    `<option value="${s}">${s}</option>`
+  ).join('');
+
+  // Auto-select current session based on month
+  // Odd = July(7) to Dec(12), Even = Jan(1) to June(6)
+  const currentSession = month >= 7
+    ? `Odd-(${year}-${String(year + 1).slice(-2)})`
+    : `Even-(${year - 1}-${String(year).slice(-2)})`;
+
+  select.value = currentSession;
+}
+
+generateSessions();
+</script>
 
       <button class="btn" id="searchBtn" onclick="searchStudent()">
         Check Result
