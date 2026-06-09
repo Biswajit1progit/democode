@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BPUT Result Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2230;
+      --border: #30363d;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59,130,246,0.15);
+      --accent2: #6366f1;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --gold: #d29922;
+      --radius: 12px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span { color: var(--text-muted); font-weight: 400; font-size: 14px; margin-left: 8px; -webkit-text-fill-color: var(--text-muted); }
+
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── HOME / SEARCH PAGE ── */
+    .hero {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero h1 .blue { background: linear-gradient(135deg, #3b82f6, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 16px;
+      text-align: center;
+      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* Search card */
+    .search-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+    }
+    .search-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 17px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(99,102,241,0.1));
+      z-index: -1;
+    }
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+    .input-wrap { position: relative; margin-bottom: 16px; }
+    .input-wrap input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .input-wrap input:focus { border-color: var(--accent); }
+    .input-wrap input::placeholder { color: var(--text-muted); }
+
+    /* session dropdown */
+    select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      padding: 12px 16px;
+      outline: none;
+      cursor: pointer;
+      margin-bottom: 24px;
+      transition: border-color 0.2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%238b949e' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+    select:focus { border-color: var(--accent); }
+    select option { background: #1c2230; }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: var(--radius);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      letter-spacing: 0.2px;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn:active { transform: scale(0.99); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .error-msg {
+      color: var(--red);
+      font-size: 13px;
+      margin-top: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    /* ── STUDENT CARD PAGE ── */
+    .result-page { padding: 32px 24px; max-width: 900px; margin: 0 auto; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 28px;
+      transition: color 0.2s;
+      border: none;
+      background: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .back-btn:hover { color: var(--text); }
+
+    .student-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .student-card::after {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 150px; height: 150px;
+      background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+    }
+    .student-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .student-info h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .student-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .meta-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .meta-tag span { color: var(--text); font-weight: 500; }
+
+    /* Semester list */
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    .sem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .sem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sem-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .sem-card .sem-label {
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .sem-card .sem-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .sem-arrow { color: var(--text-muted); font-size: 18px; }
+
+    /* ── GRADES PAGE ── */
+    .sgpa-banner {
+      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(99,102,241,0.08));
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .sgpa-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .sgpa-info .sgpa-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #3b82f6, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .sgpa-stats { display: flex; gap: 24px; }
+    .sgpa-stat { text-align: center; }
+    .sgpa-stat .val { font-size: 22px; font-weight: 700; color: var(--text); }
+    .sgpa-stat .lbl { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Subject table */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: var(--surface2); }
+    thead th {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+    tbody td { padding: 14px 16px; font-size: 14px; }
+    .td-code { color: var(--text-muted); font-size: 12px; font-family: monospace; }
+    .td-name { font-weight: 500; }
+    .td-type {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .td-type.T { background: rgba(59,130,246,0.15); color: #60a5fa; }
+    .td-type.P { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+
+    .grade-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .grade-O { background: rgba(63,185,80,0.15); color: #3fb950; }
+    .grade-E { background: rgba(63,185,80,0.1); color: #7ee787; }
+    .grade-A { background: rgba(59,130,246,0.15); color: #60a5fa; }
+    .grade-B { background: rgba(210,153,34,0.15); color: #d29922; }
+    .grade-C { background: rgba(248,81,73,0.1); color: #ffa198; }
+    .grade-D { background: rgba(248,81,73,0.15); color: #f85149; }
+    .grade-F { background: rgba(248,81,73,0.2); color: #f85149; }
+    .grade-default { background: var(--surface2); color: var(--text-muted); }
+
+    /* Loading */
+    .spinner {
+      display: inline-block;
+      width: 20px; height: 20px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      gap: 16px;
+    }
+    .loading-state .big-spinner {
+      width: 40px; height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    .loading-state p { color: var(--text-muted); font-size: 14px; }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .student-card { flex-direction: column; text-align: center; }
+      .student-meta { justify-content: center; }
+      .sgpa-banner { flex-direction: column; align-items: flex-start; }
+      thead th:nth-child(4), tbody td:nth-child(4) { display: none; }
+      .result-page { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">BPUT <span>Result Portal</span></div>
+</nav>
+
+<!-- PAGE 1: Search -->
+<div id="page-search" class="page active">
+  <div class="hero">
+    <div class="hero-badge">🎓 Official Result Checker</div>
+    <h1>Check Your<br/><span class="blue">BPUT Results</span></h1>
+    <p>Enter your roll number and date of birth to view your semester-wise results instantly.</p>
+
+    <div class="search-card">
+      <div class="field-label">Roll Number</div>
+      <div class="input-wrap">
+        <input type="text" id="rollInput" placeholder="e.g. 2301104066" maxlength="20"/>
+      </div>
+
+      <div class="field-label">Date of Birth</div>
+      <div class="input-wrap">
+        <input type="date" id="dobInput"/>
+      </div>
+
+      <div class="field-label">Session</div>
+      <select id="sessionSelect">
+        <option value="Odd-(2025-26)">Odd (2025-26)</option>
+        <option value="Even-(2024-25)">Even (2024-25)</option>
+        <option value="Odd-(2024-25)">Odd (2024-25)</option>
+        <option value="Even-(2023-24)">Even (2023-24)</option>
+        <option value="Odd-(2023-24)">Odd (2023-24)</option>
+      </select>
+
+      <button class="btn" id="searchBtn" onclick="searchStudent()">
+        Check Result
+      </button>
+      <div class="error-msg" id="searchError"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: Student + Semester List -->
+<div id="page-student" class="page">
+  <div class="result-page">
+    <button class="back-btn" onclick="showPage('search')">← Back to Search</button>
+
+    <div id="studentCardWrap"></div>
+
+    <div class="section-title">Available Results</div>
+    <div id="semGrid" class="sem-grid"></div>
+  </div>
+</div>
+
+<!-- PAGE 3: Grades -->
+<div id="page-grades" class="page">
+  <div class="result-page">
+    <button class="back-btn" id="backToStudent" onclick="showPage('student')">← Back to Results List</button>
+    <div id="gradesContent"></div>
+  </div>
+</div>
+
+<script>
+  const API = "/api";
+
+  let studentData = null;
+  let semesterList = [];
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+  function hideError(id) {
+    const el = document.getElementById(id);
+    el.style.display = 'none';
+  }
+
+  function gradeBadge(grade) {
+    const cls = ['O','E','A','B','C','D','F'].includes(grade) ? `grade-${grade}` : 'grade-default';
+    return `<span class="grade-badge ${cls}">${grade}</span>`;
+  }
+
+  async function searchStudent() {
+    const rollNo = document.getElementById('rollInput').value.trim();
+    const dob = document.getElementById('dobInput').value;
+    const session = document.getElementById('sessionSelect').value;
+
+    hideError('searchError');
+
+    if (!rollNo) return showError('searchError', 'Please enter your roll number.');
+    if (!dob) return showError('searchError', 'Please select your date of birth.');
+
+    const btn = document.getElementById('searchBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Fetching...';
+
+    try {
+      // Fetch student details
+      const sRes = await fetch(`${API}/student`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rollNo })
+      });
+      const sData = await sRes.json();
+
+      if (!sData || sData.error || !sData.studentName) {
+        throw new Error('Student not found. Check your roll number.');
+      }
+
+      // Fetch results list
+      const rRes = await fetch(`${API}/results-list`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rollNo, dob, session })
+      });
+      const rData = await rRes.json();
+
+      if (!rData || rData.error || !Array.isArray(rData) || rData.length === 0) {
+        throw new Error('No results found for this roll number, DOB, and session combination.');
+      }
+
+      studentData = sData;
+      semesterList = rData;
+
+      renderStudentPage();
+      showPage('student');
+    } catch (err) {
+      showError('searchError', err.message || 'Something went wrong. Try again.');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Check Result';
+    }
+  }
+
+  function renderStudentPage() {
+    const s = studentData;
+    const initials = s.studentName.split(' ').map(w => w[0]).slice(0,2).join('');
+
+    document.getElementById('studentCardWrap').innerHTML = `
+      <div class="student-card">
+        <div class="student-avatar">${initials}</div>
+        <div class="student-info">
+          <h2>${s.studentName}</h2>
+          <div style="color: var(--text-muted); font-size:14px;">${s.branchName}</div>
+          <div class="student-meta">
+            <div class="meta-tag">Roll No: <span>${s.rollNo}</span></div>
+            <div class="meta-tag">Batch: <span>${s.batch}</span></div>
+            <div class="meta-tag">Course: <span>${s.courseName}</span></div>
+            <div class="meta-tag">College: <span>${s.collegeName}</span></div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const grid = document.getElementById('semGrid');
+    grid.innerHTML = semesterList.map(sem => `
+      <div class="sem-card" onclick="loadGrades('${sem.semId}','${sem.examSession}','${sem.semester}')">
+        <div>
+          <div class="sem-label">${sem.semester} Semester</div>
+          <div class="sem-sub">${sem.examSession}</div>
+        </div>
+        <div class="sem-arrow">›</div>
+      </div>
+    `).join('');
+  }
+
+  async function loadGrades(semId, session, semLabel) {
+    const content = document.getElementById('gradesContent');
+    content.innerHTML = `
+      <div class="loading-state">
+        <div class="big-spinner"></div>
+        <p>Loading ${semLabel} semester result...</p>
+      </div>
+    `;
+    showPage('grades');
+
+    try {
+      const res = await fetch(`${API}/grades`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rollNo: studentData.rollNo, semId, session })
+      });
+      const data = await res.json();
+
+      if (!data || data.error || !data.grades) throw new Error('Could not load grades.');
+
+      const { grades, sgpadetails } = data;
+      const theory = grades.filter(g => g.subjectTP === 'T');
+      const practical = grades.filter(g => g.subjectTP === 'P');
+
+      function subjectRows(subjects) {
+        return subjects.map(g => `
+          <tr>
+            <td>
+              <div class="td-name">${g.subjectName}</div>
+              <div class="td-code">${g.subjectCODE}</div>
+            </td>
+            <td><span class="td-type ${g.subjectTP}">${g.subjectTP === 'T' ? 'Theory' : 'Practical'}</span></td>
+            <td>${g.subjectCredits}</td>
+            <td>${gradeBadge(g.grade)}</td>
+            <td>${g.points}</td>
+            <td>${g.creditPoints}</td>
+          </tr>
+        `).join('');
+      }
+
+      content.innerHTML = `
+        <div style="margin-bottom:24px;">
+          <div style="color:var(--text-muted);font-size:13px;margin-bottom:4px;">${studentData.studentName}</div>
+          <div class="section-title" style="margin-bottom:0;">${semLabel} Semester — ${session}</div>
+        </div>
+
+        <div class="sgpa-banner">
+          <div class="sgpa-info">
+            <h3>SGPA</h3>
+            <div class="sgpa-val">${sgpadetails.sgpa}</div>
+          </div>
+          <div class="sgpa-stats">
+            <div class="sgpa-stat">
+              <div class="val">${sgpadetails.cretits}</div>
+              <div class="lbl">Credits Earned</div>
+            </div>
+            <div class="sgpa-stat">
+              <div class="val">${sgpadetails.totalGradePoints}</div>
+              <div class="lbl">Grade Points</div>
+            </div>
+            <div class="sgpa-stat">
+              <div class="val">${grades.length}</div>
+              <div class="lbl">Subjects</div>
+            </div>
+          </div>
+        </div>
+
+        ${theory.length ? `
+          <div class="section-title">Theory Subjects</div>
+          <div class="table-wrap" style="margin-bottom:24px;">
+            <table>
+              <thead><tr>
+                <th>Subject</th><th>Type</th><th>Credits</th><th>Grade</th><th>Points</th><th>Credit Pts</th>
+              </tr></thead>
+              <tbody>${subjectRows(theory)}</tbody>
+            </table>
+          </div>
+        ` : ''}
+
+        ${practical.length ? `
+          <div class="section-title">Practical / Lab Subjects</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr>
+                <th>Subject</th><th>Type</th><th>Credits</th><th>Grade</th><th>Points</th><th>Credit Pts</th>
+              </tr></thead>
+              <tbody>${subjectRows(practical)}</tbody>
+            </table>
+          </div>
+        ` : ''}
+      `;
+    } catch (err) {
+      content.innerHTML = `
+        <div class="loading-state">
+          <div style="font-size:32px;">⚠️</div>
+          <p style="color:var(--red);">${err.message}</p>
+          <button class="btn" style="width:auto;padding:10px 24px;" onclick="showPage('student')">Go Back</button>
+        </div>
+      `;
+    }
+  }
+
+  // Allow Enter key on search
+  document.getElementById('rollInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') searchStudent();
+  });
+</script>
+</body>
+</html>
