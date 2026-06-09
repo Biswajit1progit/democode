@@ -558,7 +558,7 @@
       }
 
       // Fetch results list
-      const rRes = await fetch(`${API}/results-list`, {
+      const rRes = await fetch(`${API}/res`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rollNo, dob, session })
