@@ -34,11 +34,11 @@
 
     /* ── NAV ── */
     nav {
-      background: rgba(13,17,23,0.85);
+      background: rgba(13,17,23,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      height: 60px;
+      padding: 0 20px;
+      height: 56px;
       display: flex;
       align-items: center;
       position: sticky;
@@ -47,35 +47,35 @@
     }
     .nav-logo {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       background: linear-gradient(135deg, #3b82f6, #6366f1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: -0.3px;
     }
-    .nav-logo span { color: var(--text-muted); font-weight: 400; font-size: 14px; margin-left: 8px; -webkit-text-fill-color: var(--text-muted); }
+    .nav-logo span { color: var(--text-muted); font-weight: 400; font-size: 13px; margin-left: 6px; -webkit-text-fill-color: var(--text-muted); }
 
     /* ── PAGES ── */
     .page { display: none; }
     .page.active { display: block; }
 
-    /* ── HOME / SEARCH PAGE ── */
+    /* ── SEARCH PAGE ── */
     .hero {
-      min-height: calc(100vh - 60px);
+      min-height: calc(100vh - 56px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 24px;
+      padding: 32px 16px;
       position: relative;
       overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%);
       top: 50%; left: 50%;
       transform: translate(-50%, -60%);
       pointer-events: none;
@@ -87,41 +87,41 @@
       background: var(--accent-glow);
       border: 1px solid rgba(59,130,246,0.3);
       color: var(--accent);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       padding: 5px 12px;
       border-radius: 100px;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(32px, 6vw, 56px);
+      font-size: clamp(28px, 7vw, 52px);
       font-weight: 700;
       text-align: center;
       line-height: 1.15;
       letter-spacing: -1px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .hero h1 .blue { background: linear-gradient(135deg, #3b82f6, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero p {
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 15px;
       text-align: center;
-      max-width: 440px;
+      max-width: 400px;
       line-height: 1.7;
-      margin-bottom: 48px;
+      margin-bottom: 36px;
+      padding: 0 8px;
     }
 
-    /* Search card */
     .search-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 32px;
+      padding: 24px 20px;
       width: 100%;
-      max-width: 480px;
+      max-width: 440px;
       position: relative;
     }
     .search-card::before {
@@ -129,17 +129,18 @@
       position: absolute;
       inset: -1px;
       border-radius: 17px;
-      background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(99,102,241,0.1));
+      background: linear-gradient(135deg, rgba(59,130,246,0.25), rgba(99,102,241,0.08));
       z-index: -1;
     }
     .field-label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       letter-spacing: 0.3px;
+      text-transform: uppercase;
     }
-    .input-wrap { position: relative; margin-bottom: 16px; }
+    .input-wrap { position: relative; margin-bottom: 14px; }
     .input-wrap input {
       width: 100%;
       background: var(--bg);
@@ -148,14 +149,14 @@
       color: var(--text);
       font-family: 'Inter', sans-serif;
       font-size: 15px;
-      padding: 12px 16px;
+      padding: 12px 14px;
       outline: none;
       transition: border-color 0.2s;
+      -webkit-appearance: none;
     }
     .input-wrap input:focus { border-color: var(--accent); }
     .input-wrap input::placeholder { color: var(--text-muted); }
 
-    /* session dropdown */
     select {
       width: 100%;
       background: var(--bg);
@@ -164,12 +165,13 @@
       color: var(--text);
       font-family: 'Inter', sans-serif;
       font-size: 15px;
-      padding: 12px 16px;
+      padding: 12px 14px;
       outline: none;
       cursor: pointer;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       transition: border-color 0.2s;
       appearance: none;
+      -webkit-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%238b949e' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
@@ -190,10 +192,18 @@
       cursor: pointer;
       transition: opacity 0.2s, transform 0.1s;
       letter-spacing: 0.2px;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn:hover { opacity: 0.9; }
-    .btn:active { transform: scale(0.99); }
+    .btn:active { transform: scale(0.98); }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
 
     .error-msg {
       color: var(--red);
@@ -203,8 +213,17 @@
       display: none;
     }
 
-    /* ── STUDENT CARD PAGE ── */
-    .result-page { padding: 32px 24px; max-width: 900px; margin: 0 auto; }
+    /* ── RESULT PAGES ── */
+    .result-page { padding: 24px 16px; max-width: 900px; margin: 0 auto; }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
     .back-btn {
       display: inline-flex;
@@ -213,23 +232,45 @@
       color: var(--text-muted);
       font-size: 14px;
       cursor: pointer;
-      margin-bottom: 28px;
       transition: color 0.2s;
       border: none;
       background: none;
       font-family: 'Inter', sans-serif;
+      padding: 8px 0;
+      -webkit-tap-highlight-color: transparent;
     }
     .back-btn:hover { color: var(--text); }
 
+    /* Print button */
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .print-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .print-btn svg { width: 15px; height: 15px; }
+
+    /* Student card */
     .student-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 28px;
+      padding: 20px;
       display: flex;
       align-items: center;
-      gap: 24px;
-      margin-bottom: 32px;
+      gap: 16px;
+      margin-bottom: 24px;
       position: relative;
       overflow: hidden;
     }
@@ -237,149 +278,152 @@
       content: '';
       position: absolute;
       right: -40px; top: -40px;
-      width: 150px; height: 150px;
-      background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+      width: 130px; height: 130px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
     }
     .student-avatar {
-      width: 72px; height: 72px;
+      width: 60px; height: 60px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       display: flex; align-items: center; justify-content: center;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 700;
       color: #fff;
       flex-shrink: 0;
     }
     .student-info h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       letter-spacing: -0.3px;
+    }
+    .student-branch {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.4;
     }
     .student-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       margin-top: 10px;
     }
     .meta-tag {
       background: var(--surface2);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 4px 10px;
-      font-size: 12px;
+      padding: 3px 9px;
+      font-size: 11px;
       color: var(--text-muted);
     }
     .meta-tag span { color: var(--text); font-weight: 500; }
 
-    /* Semester list */
+    /* Semester grid */
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       letter-spacing: -0.3px;
     }
     .sem-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
     }
     .sem-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px 20px;
+      padding: 16px;
       cursor: pointer;
       transition: border-color 0.2s, transform 0.15s;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      -webkit-tap-highlight-color: transparent;
     }
     .sem-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .sem-card .sem-label {
-      font-weight: 600;
-      font-size: 15px;
-    }
-    .sem-card .sem-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+    .sem-card:active { transform: scale(0.97); }
+    .sem-card .sem-label { font-weight: 600; font-size: 14px; }
+    .sem-card .sem-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
     .sem-arrow { color: var(--text-muted); font-size: 18px; }
 
-    /* ── GRADES PAGE ── */
+    /* SGPA Banner */
     .sgpa-banner {
-      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(99,102,241,0.08));
+      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(99,102,241,0.07));
       border: 1px solid rgba(59,130,246,0.25);
       border-radius: 16px;
-      padding: 24px 28px;
+      padding: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .sgpa-info h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
+      font-size: 13px;
       color: var(--text-muted);
       font-weight: 500;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .sgpa-info .sgpa-val {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 40px;
+      font-size: 36px;
       font-weight: 700;
       background: linear-gradient(135deg, #3b82f6, #818cf8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1;
     }
-    .sgpa-stats { display: flex; gap: 24px; }
+    .sgpa-stats { display: flex; gap: 20px; flex-wrap: wrap; }
     .sgpa-stat { text-align: center; }
-    .sgpa-stat .val { font-size: 22px; font-weight: 700; color: var(--text); }
-    .sgpa-stat .lbl { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .sgpa-stat .val { font-size: 20px; font-weight: 700; color: var(--text); }
+    .sgpa-stat .lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
-    /* Subject table */
+    /* Table */
     .table-wrap {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
-    table { width: 100%; border-collapse: collapse; }
+    table { width: 100%; border-collapse: collapse; min-width: 480px; }
     thead tr { background: var(--surface2); }
     thead th {
-      padding: 14px 16px;
+      padding: 12px 14px;
       text-align: left;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--text-muted);
       letter-spacing: 0.5px;
       text-transform: uppercase;
       border-bottom: 1px solid var(--border);
+      white-space: nowrap;
     }
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: var(--surface2); }
-    tbody td { padding: 14px 16px; font-size: 14px; }
-    .td-code { color: var(--text-muted); font-size: 12px; font-family: monospace; }
-    .td-name { font-weight: 500; }
+    tbody td { padding: 12px 14px; font-size: 13px; }
+    .td-code { color: var(--text-muted); font-size: 11px; font-family: monospace; margin-top: 2px; }
+    .td-name { font-weight: 500; font-size: 13px; }
     .td-type {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       text-transform: uppercase;
+      white-space: nowrap;
     }
     .td-type.T { background: rgba(59,130,246,0.15); color: #60a5fa; }
     .td-type.P { background: rgba(99,102,241,0.15); color: #a5b4fc; }
@@ -388,10 +432,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 32px; height: 32px;
-      border-radius: 8px;
+      width: 30px; height: 30px;
+      border-radius: 7px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
     }
     .grade-O { background: rgba(63,185,80,0.15); color: #3fb950; }
     .grade-E { background: rgba(63,185,80,0.1); color: #7ee787; }
@@ -405,7 +449,7 @@
     /* Loading */
     .spinner {
       display: inline-block;
-      width: 20px; height: 20px;
+      width: 18px; height: 18px;
       border: 2px solid rgba(255,255,255,0.2);
       border-top-color: #fff;
       border-radius: 50%;
@@ -420,11 +464,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 80px 24px;
-      gap: 16px;
+      padding: 64px 24px;
+      gap: 14px;
     }
     .loading-state .big-spinner {
-      width: 40px; height: 40px;
+      width: 36px; height: 36px;
       border: 3px solid var(--border);
       border-top-color: var(--accent);
       border-radius: 50%;
@@ -432,14 +476,120 @@
     }
     .loading-state p { color: var(--text-muted); font-size: 14px; }
 
-    /* Mobile */
-    @media (max-width: 600px) {
-      .student-card { flex-direction: column; text-align: center; }
-      .student-meta { justify-content: center; }
-      .sgpa-banner { flex-direction: column; align-items: flex-start; }
-      thead th:nth-child(4), tbody td:nth-child(4) { display: none; }
-      .result-page { padding: 20px 16px; }
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      .hero { padding: 24px 14px; justify-content: flex-start; padding-top: 40px; }
+      .hero p { font-size: 14px; margin-bottom: 28px; }
+      .search-card { padding: 20px 16px; border-radius: 14px; }
+      .input-wrap input, select { font-size: 16px; } /* prevents zoom on iOS */
+
+      .result-page { padding: 16px 12px; }
+      .page-header { margin-bottom: 16px; }
+
+      .student-card { gap: 12px; padding: 16px; }
+      .student-avatar { width: 50px; height: 50px; font-size: 18px; }
+      .student-info h2 { font-size: 16px; }
+      .student-branch { font-size: 12px; }
+
+      .sem-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .sem-card { padding: 14px 12px; }
+      .sem-card .sem-label { font-size: 13px; }
+
+      .sgpa-banner { padding: 16px; }
+      .sgpa-info .sgpa-val { font-size: 30px; }
+      .sgpa-stats { gap: 16px; }
+      .sgpa-stat .val { font-size: 18px; }
+
+      /* stack type col on very small screens */
+      thead th:nth-child(2), tbody td:nth-child(2) { display: none; }
     }
+
+    @media (max-width: 360px) {
+      .sem-grid { grid-template-columns: 1fr; }
+      .meta-tag { font-size: 10px; }
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      nav, .back-btn, .print-btn, .no-print { display: none !important; }
+
+      body { background: #fff !important; color: #000 !important; font-size: 12px; }
+
+      .page { display: none !important; }
+      .page.active { display: block !important; }
+
+      .result-page { padding: 0; max-width: 100%; }
+
+      .student-card {
+        background: #f8f9fa !important;
+        border: 1px solid #ddd !important;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        padding: 16px;
+      }
+      .student-avatar {
+        background: #3b82f6 !important;
+        color: #fff !important;
+        width: 48px; height: 48px; font-size: 18px;
+      }
+      .student-info h2 { color: #000 !important; font-size: 16px; }
+      .student-branch { color: #555 !important; }
+      .meta-tag { background: #eee !important; border-color: #ccc !important; color: #333 !important; }
+      .meta-tag span { color: #000 !important; }
+
+      .sgpa-banner {
+        background: #eef3ff !important;
+        border: 1px solid #b3c7f7 !important;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        padding: 16px;
+      }
+      .sgpa-info .sgpa-val {
+        background: none !important;
+        -webkit-text-fill-color: #2563eb !important;
+        color: #2563eb !important;
+        font-size: 28px;
+      }
+      .sgpa-info h3 { color: #555 !important; }
+      .sgpa-stat .val { color: #000 !important; }
+      .sgpa-stat .lbl { color: #555 !important; }
+
+      .table-wrap { border: 1px solid #ddd !important; border-radius: 6px; overflow: hidden; }
+      table { min-width: 0 !important; }
+      thead tr { background: #f1f3f5 !important; }
+      thead th { color: #555 !important; border-bottom: 1px solid #ddd !important; padding: 8px 10px; font-size: 10px; }
+      tbody tr { border-bottom: 1px solid #eee !important; }
+      tbody tr:hover { background: transparent !important; }
+      tbody td { padding: 8px 10px; color: #000 !important; }
+      .td-code { color: #666 !important; }
+      .td-name { color: #000 !important; }
+
+      .td-type.T { background: #dbeafe !important; color: #1d4ed8 !important; }
+      .td-type.P { background: #ede9fe !important; color: #5b21b6 !important; }
+
+      .grade-O { background: #dcfce7 !important; color: #15803d !important; }
+      .grade-E { background: #d1fae5 !important; color: #065f46 !important; }
+      .grade-A { background: #dbeafe !important; color: #1d4ed8 !important; }
+      .grade-B { background: #fef9c3 !important; color: #854d0e !important; }
+      .grade-C { background: #ffedd5 !important; color: #9a3412 !important; }
+      .grade-D, .grade-F { background: #fee2e2 !important; color: #991b1b !important; }
+
+      .section-title { color: #000 !important; font-size: 14px; margin-top: 16px; }
+
+      .print-footer {
+        display: block !important;
+        text-align: center;
+        margin-top: 24px;
+        font-size: 10px;
+        color: #999;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+      }
+    }
+
+    .print-footer { display: none; }
   </style>
 </head>
 <body>
@@ -453,12 +603,12 @@
   <div class="hero">
     <div class="hero-badge">🎓 Official Result Checker</div>
     <h1>Check Your<br/><span class="blue">BPUT Results</span></h1>
-    <p>Enter your roll number and date of birth to view your semester-wise results instantly.</p>
+    <p>Enter your roll number and date of birth to view your semester-wise results.</p>
 
     <div class="search-card">
       <div class="field-label">Roll Number</div>
       <div class="input-wrap">
-        <input type="text" id="rollInput" placeholder="e.g. 2301104066" maxlength="20"/>
+        <input type="text" id="rollInput" placeholder="e.g. 2301104066" maxlength="20" inputmode="numeric"/>
       </div>
 
       <div class="field-label">Date of Birth</div>
@@ -467,48 +617,7 @@
       </div>
 
       <div class="field-label">Session</div>
-     <!--  <select id="sessionSelect">
-        <option value="" disabled selected>Select session</option>
-        <option value="Even-(2025-26)">Even (2025-26)</option>
-        <option value="Odd-(2025-26)">Odd (2025-26)</option>
-        <option value="Even-(2024-25)">Even (2024-25)</option>
-        <option value="Odd-(2024-25)">Odd (2024-25)</option>
-        <option value="Even-(2023-24)">Even (2023-24)</option>
-        <option value="Odd-(2023-24)">Odd (2023-24)</option>
-      </select> -->
       <select id="sessionSelect"></select>
-
-<script>
-function generateSessions() {
-  const sessions = [];
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1; // 1-12
-
-  // Generate last 3 years of sessions
-  for (let y = year; y >= year - 2; y--) {
-    // Odd session: July-Dec → y to y+1
-    sessions.push(`Odd-(${y}-${String(y + 1).slice(-2)})`);
-    // Even session: Jan-June → y-1 to y
-    sessions.push(`Even-(${y - 1}-${String(y).slice(-2)})`);
-  }
-
-  const select = document.getElementById('sessionSelect');
-  select.innerHTML = sessions.map(s =>
-    `<option value="${s}">${s}</option>`
-  ).join('');
-
-  // Auto-select current session based on month
-  // Odd = July(7) to Dec(12), Even = Jan(1) to June(6)
-  const currentSession = month >= 7
-    ? `Odd-(${year}-${String(year + 1).slice(-2)})`
-    : `Even-(${year - 1}-${String(year).slice(-2)})`;
-
-  select.value = currentSession;
-}
-
-generateSessions();
-</script>
 
       <button class="btn" id="searchBtn" onclick="searchStudent()">
         Check Result
@@ -521,10 +630,10 @@ generateSessions();
 <!-- PAGE 2: Student + Semester List -->
 <div id="page-student" class="page">
   <div class="result-page">
-    <button class="back-btn" onclick="showPage('search')">← Back to Search</button>
-
+    <div class="page-header">
+      <button class="back-btn" onclick="showPage('search')">← Back to Search</button>
+    </div>
     <div id="studentCardWrap"></div>
-
     <div class="section-title">Available Results</div>
     <div id="semGrid" class="sem-grid"></div>
   </div>
@@ -533,14 +642,23 @@ generateSessions();
 <!-- PAGE 3: Grades -->
 <div id="page-grades" class="page">
   <div class="result-page">
-    <button class="back-btn" id="backToStudent" onclick="showPage('student')">← Back to Results List</button>
+    <div class="page-header">
+      <button class="back-btn" onclick="showPage('student')">← Back to Results List</button>
+      <button class="print-btn no-print" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        Print Result
+      </button>
+    </div>
     <div id="gradesContent"></div>
+    <div class="print-footer">Printed from BPUT Result Portal &mdash; results.bput.ac.in</div>
   </div>
 </div>
 
 <script>
   const API = "/api";
-
   let studentData = null;
   let semesterList = [];
 
@@ -556,20 +674,18 @@ generateSessions();
     el.style.display = 'block';
   }
   function hideError(id) {
-    const el = document.getElementById(id);
-    el.style.display = 'none';
+    document.getElementById(id).style.display = 'none';
   }
 
   function gradeBadge(grade) {
-    const cls = ['O','E','A','B','C','D','F'].includes(grade) ? `grade-${grade}` : 'grade-default';
-    return `<span class="grade-badge ${cls}">${grade}</span>`;
+    const cls = ['O','E','A','B','C','D','F'].includes(grade) ? 'grade-' + grade : 'grade-default';
+    return '<span class="grade-badge ' + cls + '">' + grade + '</span>';
   }
 
   async function searchStudent() {
     const rollNo = document.getElementById('rollInput').value.trim();
     const dob = document.getElementById('dobInput').value;
     const session = document.getElementById('sessionSelect').value;
-
     hideError('searchError');
 
     if (!rollNo) return showError('searchError', 'Please enter your roll number.');
@@ -580,33 +696,25 @@ generateSessions();
     btn.innerHTML = '<span class="spinner"></span>Fetching...';
 
     try {
-      // Fetch student details
-      const sRes = await fetch(`${API}/student`, {
+      const sRes = await fetch(API + '/student', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rollNo })
       });
       const sData = await sRes.json();
+      if (!sData || sData.error || !sData.studentName) throw new Error('Student not found. Check your roll number.');
 
-      if (!sData || sData.error || !sData.studentName) {
-        throw new Error('Student not found. Check your roll number.');
-      }
-
-      // Fetch results list
-      const rRes = await fetch(`${API}/res`, {
+      const rRes = await fetch(API + '/res', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rollNo, dob, session })
       });
       const rData = await rRes.json();
-
-      if (!rData || rData.error || !Array.isArray(rData) || rData.length === 0) {
-        throw new Error('No results found for this roll number, DOB, and session combination.');
-      }
+      if (!rData || rData.error || !Array.isArray(rData) || rData.length === 0)
+        throw new Error('No results found. Check your DOB and session.');
 
       studentData = sData;
       semesterList = rData;
-
       renderStudentPage();
       showPage('student');
     } catch (err) {
@@ -619,140 +727,126 @@ generateSessions();
 
   function renderStudentPage() {
     const s = studentData;
-    const initials = s.studentName.split(' ').map(w => w[0]).slice(0,2).join('');
+    const initials = s.studentName.split(' ').map(function(w){ return w[0]; }).slice(0,2).join('');
+    document.getElementById('studentCardWrap').innerHTML =
+      '<div class="student-card">' +
+        '<div class="student-avatar">' + initials + '</div>' +
+        '<div class="student-info">' +
+          '<h2>' + s.studentName + '</h2>' +
+          '<div class="student-branch">' + s.branchName + '</div>' +
+          '<div class="student-meta">' +
+            '<div class="meta-tag">Roll No: <span>' + s.rollNo + '</span></div>' +
+            '<div class="meta-tag">Batch: <span>' + s.batch + '</span></div>' +
+            '<div class="meta-tag">Course: <span>' + s.courseName + '</span></div>' +
+            '<div class="meta-tag">College: <span>' + s.collegeName + '</span></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
 
-    document.getElementById('studentCardWrap').innerHTML = `
-      <div class="student-card">
-        <div class="student-avatar">${initials}</div>
-        <div class="student-info">
-          <h2>${s.studentName}</h2>
-          <div style="color: var(--text-muted); font-size:14px;">${s.branchName}</div>
-          <div class="student-meta">
-            <div class="meta-tag">Roll No: <span>${s.rollNo}</span></div>
-            <div class="meta-tag">Batch: <span>${s.batch}</span></div>
-            <div class="meta-tag">Course: <span>${s.courseName}</span></div>
-            <div class="meta-tag">College: <span>${s.collegeName}</span></div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    const grid = document.getElementById('semGrid');
-    grid.innerHTML = semesterList.map(sem => `
-      <div class="sem-card" onclick="loadGrades('${sem.semId}','${sem.examSession}','${sem.semester}')">
-        <div>
-          <div class="sem-label">${sem.semester} Semester</div>
-          <div class="sem-sub">${sem.examSession}</div>
-        </div>
-        <div class="sem-arrow">›</div>
-      </div>
-    `).join('');
+    document.getElementById('semGrid').innerHTML = semesterList.map(function(sem) {
+      return '<div class="sem-card" onclick="loadGrades(\'' + sem.semId + '\',\'' + sem.examSession + '\',\'' + sem.semester + '\')">' +
+        '<div><div class="sem-label">' + sem.semester + ' Semester</div>' +
+        '<div class="sem-sub">' + sem.examSession + '</div></div>' +
+        '<div class="sem-arrow">›</div></div>';
+    }).join('');
   }
 
   async function loadGrades(semId, session, semLabel) {
     const content = document.getElementById('gradesContent');
-    content.innerHTML = `
-      <div class="loading-state">
-        <div class="big-spinner"></div>
-        <p>Loading ${semLabel} semester result...</p>
-      </div>
-    `;
+    content.innerHTML = '<div class="loading-state"><div class="big-spinner"></div><p>Loading ' + semLabel + ' semester result...</p></div>';
     showPage('grades');
 
     try {
-      const res = await fetch(`${API}/grades`, {
+      const res = await fetch(API + '/grade', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ rollNo: studentData.rollNo, semId, session })
+        body: JSON.stringify({ rollNo: studentData.rollNo, semId: semId, session: session })
       });
       const data = await res.json();
-
       if (!data || data.error || !data.grades) throw new Error('Could not load grades.');
 
-      const { grades, sgpadetails } = data;
-      const theory = grades.filter(g => g.subjectTP === 'T');
-      const practical = grades.filter(g => g.subjectTP === 'P');
+      const grades = data.grades;
+      const sgpa = data.sgpadetails;
+      const theory = grades.filter(function(g){ return g.subjectTP === 'T'; });
+      const practical = grades.filter(function(g){ return g.subjectTP === 'P'; });
 
       function subjectRows(subjects) {
-        return subjects.map(g => `
-          <tr>
-            <td>
-              <div class="td-name">${g.subjectName}</div>
-              <div class="td-code">${g.subjectCODE}</div>
-            </td>
-            <td><span class="td-type ${g.subjectTP}">${g.subjectTP === 'T' ? 'Theory' : 'Practical'}</span></td>
-            <td>${g.subjectCredits}</td>
-            <td>${gradeBadge(g.grade)}</td>
-            <td>${g.points}</td>
-            <td>${g.creditPoints}</td>
-          </tr>
-        `).join('');
+        return subjects.map(function(g) {
+          return '<tr>' +
+            '<td><div class="td-name">' + g.subjectName + '</div><div class="td-code">' + g.subjectCODE + '</div></td>' +
+            '<td><span class="td-type ' + g.subjectTP + '">' + (g.subjectTP === 'T' ? 'Theory' : 'Practical') + '</span></td>' +
+            '<td>' + g.subjectCredits + '</td>' +
+            '<td>' + gradeBadge(g.grade) + '</td>' +
+            '<td>' + g.points + '</td>' +
+            '<td>' + g.creditPoints + '</td>' +
+          '</tr>';
+        }).join('');
       }
 
-      content.innerHTML = `
-        <div style="margin-bottom:24px;">
-          <div style="color:var(--text-muted);font-size:13px;margin-bottom:4px;">${studentData.studentName}</div>
-          <div class="section-title" style="margin-bottom:0;">${semLabel} Semester — ${session}</div>
-        </div>
+      var theorySection = theory.length ? (
+        '<div class="section-title">Theory Subjects</div>' +
+        '<div class="table-wrap" style="margin-bottom:20px;">' +
+        '<table><thead><tr><th>Subject</th><th>Type</th><th>Credits</th><th>Grade</th><th>Points</th><th>Credit Pts</th></tr></thead>' +
+        '<tbody>' + subjectRows(theory) + '</tbody></table></div>'
+      ) : '';
 
-        <div class="sgpa-banner">
-          <div class="sgpa-info">
-            <h3>SGPA</h3>
-            <div class="sgpa-val">${sgpadetails.sgpa}</div>
-          </div>
-          <div class="sgpa-stats">
-            <div class="sgpa-stat">
-              <div class="val">${sgpadetails.cretits}</div>
-              <div class="lbl">Credits Earned</div>
-            </div>
-            <div class="sgpa-stat">
-              <div class="val">${sgpadetails.totalGradePoints}</div>
-              <div class="lbl">Grade Points</div>
-            </div>
-            <div class="sgpa-stat">
-              <div class="val">${grades.length}</div>
-              <div class="lbl">Subjects</div>
-            </div>
-          </div>
-        </div>
+      var practicalSection = practical.length ? (
+        '<div class="section-title">Practical / Lab</div>' +
+        '<div class="table-wrap">' +
+        '<table><thead><tr><th>Subject</th><th>Type</th><th>Credits</th><th>Grade</th><th>Points</th><th>Credit Pts</th></tr></thead>' +
+        '<tbody>' + subjectRows(practical) + '</tbody></table></div>'
+      ) : '';
 
-        ${theory.length ? `
-          <div class="section-title">Theory Subjects</div>
-          <div class="table-wrap" style="margin-bottom:24px;">
-            <table>
-              <thead><tr>
-                <th>Subject</th><th>Type</th><th>Credits</th><th>Grade</th><th>Points</th><th>Credit Pts</th>
-              </tr></thead>
-              <tbody>${subjectRows(theory)}</tbody>
-            </table>
-          </div>
-        ` : ''}
+      content.innerHTML =
+        '<div style="margin-bottom:20px;">' +
+          '<div style="color:var(--text-muted);font-size:12px;margin-bottom:4px;">' + studentData.studentName + '</div>' +
+          '<div class="section-title" style="margin-bottom:0;">' + semLabel + ' Semester &mdash; ' + session + '</div>' +
+        '</div>' +
+        '<div class="sgpa-banner">' +
+          '<div class="sgpa-info"><h3>SGPA</h3><div class="sgpa-val">' + sgpa.sgpa + '</div></div>' +
+          '<div class="sgpa-stats">' +
+            '<div class="sgpa-stat"><div class="val">' + sgpa.cretits + '</div><div class="lbl">Credits</div></div>' +
+            '<div class="sgpa-stat"><div class="val">' + sgpa.totalGradePoints + '</div><div class="lbl">Grade Pts</div></div>' +
+            '<div class="sgpa-stat"><div class="val">' + grades.length + '</div><div class="lbl">Subjects</div></div>' +
+          '</div>' +
+        '</div>' +
+        theorySection + practicalSection;
 
-        ${practical.length ? `
-          <div class="section-title">Practical / Lab Subjects</div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr>
-                <th>Subject</th><th>Type</th><th>Credits</th><th>Grade</th><th>Points</th><th>Credit Pts</th>
-              </tr></thead>
-              <tbody>${subjectRows(practical)}</tbody>
-            </table>
-          </div>
-        ` : ''}
-      `;
     } catch (err) {
-      content.innerHTML = `
-        <div class="loading-state">
-          <div style="font-size:32px;">⚠️</div>
-          <p style="color:var(--red);">${err.message}</p>
-          <button class="btn" style="width:auto;padding:10px 24px;" onclick="showPage('student')">Go Back</button>
-        </div>
-      `;
+      content.innerHTML =
+        '<div class="loading-state">' +
+          '<div style="font-size:32px;">⚠️</div>' +
+          '<p style="color:var(--red);">' + err.message + '</p>' +
+          '<button class="btn" style="width:auto;padding:10px 24px;" onclick="showPage(\'student\')">Go Back</button>' +
+        '</div>';
     }
   }
 
-  // Allow Enter key on search
-  document.getElementById('rollInput').addEventListener('keydown', e => {
+  // Dynamic session generator
+  function generateSessions() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var sessions = [];
+    for (var y = year; y >= year - 2; y--) {
+      var nextYY = String(y + 1).slice(-2);
+      var currYY = String(y).slice(-2);
+      sessions.push({ value: 'Odd-(' + y + '-' + nextYY + ')', label: 'Odd (' + y + '-' + nextYY + ')' });
+      sessions.push({ value: 'Even-(' + (y-1) + '-' + currYY + ')', label: 'Even (' + (y-1) + '-' + currYY + ')' });
+    }
+    var select = document.getElementById('sessionSelect');
+    select.innerHTML = sessions.map(function(s) {
+      return '<option value="' + s.value + '">' + s.label + '</option>';
+    }).join('');
+    var current = month >= 7
+      ? 'Odd-(' + year + '-' + String(year + 1).slice(-2) + ')'
+      : 'Even-(' + (year - 1) + '-' + String(year).slice(-2) + ')';
+    select.value = current;
+  }
+
+  generateSessions();
+
+  document.getElementById('rollInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') searchStudent();
   });
 </script>
