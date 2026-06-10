@@ -757,7 +757,7 @@
     showPage('grades');
 
     try {
-      const res = await fetch(API + '/grade', {
+      const res = await fetch(API + '/grades', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rollNo: studentData.rollNo, semId: semId, session: session })
