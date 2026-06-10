@@ -560,11 +560,13 @@
       table { min-width: 0 !important; }
       thead tr { background: #f1f3f5 !important; }
       thead th { color: #555 !important; border-bottom: 1px solid #ddd !important; padding: 8px 10px; font-size: 10px; }
-      tbody tr { border-bottom: 1px solid #eee !important; }
-      tbody tr:hover { background: transparent !important; }
-      tbody td { padding: 8px 10px; color: #000 !important; }
-      .td-code { color: #666 !important; }
-      .td-name { color: #000 !important; }
+      tbody tr { background: #fff !important; border-bottom: 1px solid #eee !important; }
+      tbody tr:nth-child(even) { background: #f9f9f9 !important; }
+      tbody tr:hover { background: #fff !important; }
+      tbody td { padding: 8px 10px; color: #000 !important; background: transparent !important; }
+      tbody td * { color: inherit !important; }
+      .td-code { color: #555 !important; }
+      .td-name { color: #000 !important; font-weight: 600 !important; }
 
       .td-type.T { background: #dbeafe !important; color: #1d4ed8 !important; }
       .td-type.P { background: #ede9fe !important; color: #5b21b6 !important; }
@@ -757,7 +759,7 @@
     showPage('grades');
 
     try {
-      const res = await fetch(API + '/grades', {
+      const res = await fetch(API + '/grade', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rollNo: studentData.rollNo, semId: semId, session: session })
